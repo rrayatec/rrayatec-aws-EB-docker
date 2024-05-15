@@ -1,5 +1,3 @@
-#https://medium.com/@miladev95/fastapi-crud-with-mongodb-d7a8fbb8c53e
-
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, HTTPException
 from fastapi import Response
