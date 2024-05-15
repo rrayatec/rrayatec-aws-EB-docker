@@ -101,3 +101,11 @@
 	YAML se utiliza comúnmente en el diseño de archivos de configuración, ya que es fácil de leer y escribir, y se puede utilizar para serializar datos en un formato de texto plano. Aunque YAML se inspira en lenguajes como XML, no es un lenguaje de marcado en el sentido tradicional, sino que se enfoca en la serialización de datos en lugar de la presentación de documentos.
 
 	En resumen, YAML es un lenguaje de serialización de datos que se utiliza para almacenar y transmitir datos de manera legible y fácil de leer, y se utiliza comúnmente en el diseño de archivos de configuración.
+
+## Minikube
+	minikube start
+	minikube stop
+	minikube delete
+	minikube addons enable ingress
+	minikube tunnel
+	minikube service web --url 
