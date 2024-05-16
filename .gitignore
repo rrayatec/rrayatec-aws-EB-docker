@@ -4,3 +4,4 @@ env
 node_modules
 env3.10
 __pycache__
+.env
