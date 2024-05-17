@@ -59,13 +59,13 @@ spec:
     - host: hello-world.example
       http:
         paths:
-          - path: /
+          - path: /api
             pathType: Prefix
             backend:
               service:
-                name: web
+                name: my-api
                 port:
-                  number: 8080
+                  number: 8000
           - path: /react
             pathType: Prefix
             backend:
