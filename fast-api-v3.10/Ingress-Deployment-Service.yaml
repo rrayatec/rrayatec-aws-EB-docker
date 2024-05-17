@@ -17,6 +17,9 @@ spec:
           name: project-api
           command: ["uvicorn"]
           args: ["main:app", "--port=8000", "--host", "0.0.0.0"]
+          env:
+              - name: MONGODB_KEY
+                value: mongodb+srv://xxxx
           livenessProbe:
             httpGet:
               path: /
@@ -45,7 +48,8 @@ metadata:
   name: project-ingress
 spec:
   rules:
-    - http:
+    - host: hello-world.example
+      http:
         paths:
           - path: /
             pathType: Prefix

@@ -16,7 +16,7 @@ import models.user as user
 # collection = database["alumno"]
 # # Pymongo connection URL
 
-mongodb_key = os.getenv("mongodb_key", 'mongodb://localhost:27017')
+mongodb_key = os.getenv("MONGODB_KEY", 'mongodb://localhost:27017')
 client = pymongo.MongoClient(mongodb_key) 
 db = client["Escuela"] 
 collection = db["alumno"] 
