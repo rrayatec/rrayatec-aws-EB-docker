@@ -13,16 +13,16 @@ spec:
         app: project-api
     spec:
       containers:
-        - image: rrayad/api:1.3
+        - image: rrayad/api:1.2
           name: project-api
           command: ["uvicorn"]
           args: ["main:app", "--port=8000", "--host", "0.0.0.0"]
           env:
-              - name: MONGODB_KEY
-                value: mongodb+srv://xxxx
+            - name: MONGODB_KEY
+              value: mongodb+srv://...
           livenessProbe:
             httpGet:
-              path: /
+              path: /api/v1
               port: 8000
           ports:
             - containerPort: 8000
@@ -51,7 +51,7 @@ spec:
     - host: hello-world.example
       http:
         paths:
-          - path: /
+          - path: /api/v1
             pathType: Prefix
             backend:
               service:
@@ -59,7 +59,6 @@ spec:
                 port:
                   number: 8000
   ingressClassName: nginx
-
 ---
 apiVersion: networking.k8s.io/v1
 kind: IngressClass

@@ -20,7 +20,11 @@ mongodb_key = os.getenv("MONGODB_KEY", 'mongodb://localhost:27017')
 client = pymongo.MongoClient(mongodb_key) 
 db = client["Escuela"] 
 collection = db["alumno"] 
-app = FastAPI()
+app = FastAPI(servers=[
+        {"url": "http://hello-world.example/api/v1", "description": "Staging environment"},
+    ],
+    root_path="/api/v1",
+    root_path_in_servers=False,)
 
 # Configurar la lista de orígenes permitidos
 # Asegúrate de incluir el origen de tu aplicación React aquí
@@ -81,9 +85,9 @@ def delete_item(item_id: str):
         return deleted_item
     raise HTTPException(status_code=404, detail="Item not found")
 
-@app.get("/healthCheck")
+@app.get("/")
 async def read_root():
-    return {"healthCheck": "OK...!"}
+    return {"api => healthCheck": "OK...!"}
 
 # Iniciar la aplicación con uvicorn
 if __name__ == "__main__":
