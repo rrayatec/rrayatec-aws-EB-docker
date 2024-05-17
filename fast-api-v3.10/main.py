@@ -39,14 +39,6 @@ app.add_middleware(
     allow_headers=["*"],  # Encabezados permitidos
 )
 
-@app.get("/getAllNotes", response_model=user.Notes)
-def read_item():
-    item = collection.find({})
-    if item:
-        json_str = json.dumps(list(item), indent=1, default=str)
-        return Response(content=json_str, media_type='application/json')
-    raise HTTPException(status_code=404, detail="Item not found")
-
 @app.get("/getAllUsers", response_model=user.User)
 def read_item():
     item = collection.find({})
