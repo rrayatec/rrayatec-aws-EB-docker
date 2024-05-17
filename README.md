@@ -109,3 +109,9 @@
 	minikube addons enable ingress
 	minikube tunnel
 	minikube service web --url 
+
+## windows
+	choco install Containers Microsoft-Hyper-V --source windowsfeatures
+	choco install minikube
+
+	https://minikube.sigs.k8s.io/docs/tutorials/docker_desktop_replacement/
