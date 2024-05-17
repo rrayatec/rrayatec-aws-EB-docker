@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: project-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: project-api
+  template:
+    metadata:
+      labels:
+        app: project-api
+    spec:
+      containers:
+        - image: rrayad/api:1.3
+          name: project-api
+          command: ["uvicorn"]
+          args: ["main:app", "--port=8000", "--host", "0.0.0.0"]
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8000
+          ports:
+            - containerPort: 8000
+              name: http
+              protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: project-api
+spec:
+  selector:
+    app: project-api
+  ports:
+    - port: 8000
+      protocol: TCP
+      targetPort: http
+  type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: project-ingress
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: project-api
+                port:
+                  number: 8000
+  ingressClassName: nginx
+
+---
+apiVersion: networking.k8s.io/v1
+kind: IngressClass
+metadata:
+  name: nginx
+spec:
+  controller: k8s.io/ingress-nginx
