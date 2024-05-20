@@ -19,7 +19,7 @@ spec:
           args: ["main:app", "--port=8000", "--host", "0.0.0.0"]
           env:
             - name: MONGODB_KEY
-              value: ...
+              value: mongodb+srv://rraya:LifCbgqkYGXAzON5@cluster0.fckgg3n.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
           livenessProbe:
             httpGet:
               path: /api/v1
