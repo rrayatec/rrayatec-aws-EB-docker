@@ -11,9 +11,13 @@ mongodb_key = os.getenv("MONGODB_KEY", 'mongodb://localhost:27017')
 client = pymongo.MongoClient(mongodb_key) 
 db = client["Escuela"] 
 collection = db["alumno"] 
-app = FastAPI(servers=[{"url": "/api/v1"},{"url": "http://hello-world.example/api/v1", "description": "Prod"}],
+app = FastAPI(servers=[
+            {"url": "/api/v1"},
+            {"url": "http://hello-world.example/api/v1", "description": "Prod"},
+    ],
     root_path="/api/v1",
     root_path_in_servers=False,)
+
 # Configurar la lista de orígenes permitidos
 origins = ["*"]
 
