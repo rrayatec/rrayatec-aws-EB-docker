@@ -1,6 +1,5 @@
+from fastapi import FastAPI, HTTPException, Response
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi import FastAPI, HTTPException
-from fastapi import Response
 from bson import ObjectId
 import pymongo
 import json
@@ -8,26 +7,14 @@ import os
 # Modelos internos
 import models.user as user
 
-#from motor.motor_asyncio import AsyncIOMotorClient
-# # MongoDB AsyncIOMotorClient connection URL
-# MONGO_URL = "mongodb://localhost:27017"
-# client = AsyncIOMotorClient(MONGO_URL)
-# database = client["Escuela"]
-# collection = database["alumno"]
-# # Pymongo connection URL
-
 mongodb_key = os.getenv("MONGODB_KEY", 'mongodb://localhost:27017')
 client = pymongo.MongoClient(mongodb_key) 
 db = client["Escuela"] 
 collection = db["alumno"] 
-app = FastAPI(servers=[
-        {"url": "http://hello-world.example/api/v1", "description": "Staging environment"},
-    ],
+app = FastAPI(servers=[{"url": "/api/v1"},{"url": "http://hello-world.example/api/v1", "description": "Prod"}],
     root_path="/api/v1",
     root_path_in_servers=False,)
-
 # Configurar la lista de orígenes permitidos
-# Asegúrate de incluir el origen de tu aplicación React aquí
 origins = ["*"]
 
 # Agregar CORSMiddleware a la aplicación FastAPI
